@@ -9,13 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
  Button btn,btnPasar,btnTerminar;
  TextView texto,personaje;
  int posicion = 0;
  int puntuacion = 0;
- Database database;
+    Database database;
  public static SQLiteDatabase db;
 TimesUp timesUp;
  public static String[] nombres = {"pikachu","charmander","bulbasaur","squirlte"};
