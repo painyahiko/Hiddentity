@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
  Button btn,btnPasar,btnTerminar;
@@ -41,7 +43,7 @@ TimesUp timesUp;
 
         timesUp = new TimesUp(database);
 
-        String[] personajes = timesUp.personajes;
+        //ArrayList<String> personajes = timesUp.meterPersonajes();
 
         Button btn = findViewById(R.id.btn1);
         Button pasar = findViewById(R.id.btnPasar);
@@ -68,9 +70,9 @@ TimesUp timesUp;
         pasar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                personaje.setText(nombres[posicion]);
                 posicion++;
                 puntuacion++;
-                personaje.setText(nombres[posicion]);
 
 
             }
