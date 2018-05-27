@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Database database;
  public static SQLiteDatabase db;
 TimesUp timesUp;
- public static String[] nombres = {"pikachu","charmander","bulbasaur","squirlte"};
+ public static String[] nombres = {"pikachu","charmander","bulbasaur","psyduck"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
