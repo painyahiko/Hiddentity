@@ -1,6 +1,7 @@
 package com.example.david.hiddentity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
- Button btn,btnPasar,btnTerminar;
+ Button btn,pasar,terminar;
  TextView texto,personaje;
  int posicion = 0;
  int puntuacion = 0;
@@ -43,10 +44,11 @@ TimesUp timesUp;
 
         timesUp = new TimesUp(database);
 
-        //ArrayList<String> personajes = timesUp.meterPersonajes();
+        final ArrayList<String> personajes = timesUp.meterPersonajes();
 
-        Button btn = findViewById(R.id.btn1);
-        Button pasar = findViewById(R.id.btnPasar);
+        btn = findViewById(R.id.btn1);
+        pasar = findViewById(R.id.btnPasar);
+        terminar = findViewById(R.id.btnTerminar);
         final TextView texto = findViewById(R.id.texto);
         final TextView personaje = findViewById(R.id.personaje);
         //personaje.setText(personajes[posicion]);
@@ -70,13 +72,22 @@ TimesUp timesUp;
         pasar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                personaje.setText(nombres[posicion]);
+                personaje.setText(personajes.get(posicion));
                 posicion++;
                 puntuacion++;
 
 
             }
         });
+
+        terminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,PointmarkActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }

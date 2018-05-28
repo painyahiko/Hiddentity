@@ -1,6 +1,7 @@
 package com.example.david.hiddentity;
 
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -23,16 +24,16 @@ public class TimesUp {
 
     public ArrayList<String> meterPersonajes(){
         int posicion = 0;
-        final Cursor c = db.db.rawQuery("SELECT nombre FROM personajes;", null);
+        final Cursor c = db.db.rawQuery("SELECT nombre FROM personajes ORDER BY RANDOM() LIMIT 30;", null);
         //SELECT * FROM table ORDER BY RANDOM() LIMIT 1;
-        for (int i=0;i<5;i++){
+        for (int i=0;i<30;i++){
             if(c.moveToPosition(i)){
-                personajes.add(c.getString(1));
+                personajes.add(c.getString(0));
+                Log.e("prueba",personajes.get(i));
             }
         }
 
         return personajes;
     }
-
 
 }
