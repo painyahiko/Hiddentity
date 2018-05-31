@@ -1,59 +1,47 @@
 package com.example.david.hiddentity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+public class Principal extends Activity {
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
-
- Button btn,pasar,terminar;
- TextView texto,personaje;
- int posicion = 0;
- int puntuacion = 0;
+    Button btn, pasar, terminar, jugar, reglas;
     Database database;
- public static SQLiteDatabase db;
-TimesUp timesUp;
- public static String[] nombres = {"raichu","charmander","bulbasaur","psyduck"};
+    TextView texto, personaje;
+    TimesUp partida;
+    int posicion = 0;
+    int puntuacion = 0;
+    public static SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_principal);
 
         //revisar
-        db = openOrCreateDatabase("Hiddentity", Context.MODE_PRIVATE,null);
+        db = openOrCreateDatabase("Hiddentity", Context.MODE_PRIVATE, null);
 
         database = new Database(db);
 
-        runOnUiThread(new Runnable(){
+        runOnUiThread(new Runnable() {
             public void run() {
                 database.openOrCreate();
             }
         });
+        final Button jugar = findViewById(R.id.btnJugar);
+        final Button reglas = findViewById(R.id.btnReglas);
 
+        partida = new TimesUp(database);
 
-        timesUp = new TimesUp(database);
-
-        final ArrayList<String> personajes = timesUp.meterPersonajes();
-
-        btn = findViewById(R.id.btn1);
-        pasar = findViewById(R.id.btnPasar);
-        terminar = findViewById(R.id.btnTerminar);
-        final TextView texto = findViewById(R.id.texto);
-        final TextView personaje = findViewById(R.id.personaje);
         //personaje.setText(personajes[posicion]);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        /*btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new CountDownTimer(30000, 1000) {
@@ -72,7 +60,7 @@ TimesUp timesUp;
         pasar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                personaje.setText(personajes.get(posicion));
+                //personaje.setText(personajes.get(posicion));
                 posicion++;
                 puntuacion++;
 
@@ -83,8 +71,23 @@ TimesUp timesUp;
         terminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,PointmarkActivity.class);
+                Intent intent = new Intent(Principal.this, PointmarkActivity.class);
                 startActivity(intent);
+            }
+        });*/
+
+        jugar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        reglas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent reglas = new Intent(getApplicationContext(),Reglas.class);
+                startActivity(reglas);
             }
         });
 

@@ -1,7 +1,10 @@
 package com.example.david.hiddentity;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
 
 /**
  * Created by david on 07/05/2018.
@@ -122,6 +125,17 @@ public class Database {
 
 
         return db;
+    }
+
+    public ArrayList<String> elegirPersonajes(int num){
+        ArrayList<String> elegidos = new ArrayList<String>();
+        final Cursor c = db.rawQuery("SELECT nombre FROM personajes ORDER BY RANDOM() LIMIT "+num+";", null);
+        for (int i=0;i<num;i++){
+            if(c.moveToPosition(i)){
+                elegidos.add(c.getString(0));
+            }
+        }
+        return elegidos;
     }
 
 
