@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.david.hiddentity.Principal">
+    tools:context="com.example.david.hiddentity.PrincipalActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:orientation="vertical">
 
         <ViewAnimator
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:layout_editor_absoluteY="341dp">
 
             <ImageView
@@ -29,17 +28,19 @@
 
         <Button
             android:id="@+id/btnJugar"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Jugar"
              />
 
         <Button
             android:id="@+id/btnReglas"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reglas"
-            />
+            android:text="Reglas" />
 
     </LinearLayout>
 

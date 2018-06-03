@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.david.hiddentity.PartidaActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/puntos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="puntos:" />
+
+        <TextView
+            android:id="@+id/tiempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="36dp"
+            android:layout_marginTop="15dp"
+            android:gravity="right"
+            android:text="tiempo" />
+
+        <TextView
+            android:id="@+id/personaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tiempo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="149dp"
+            android:gravity="center"
+            android:text="personaje" />
+
+        <Button
+            android:id="@+id/btnsiguiente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="31dp"
+            android:layout_marginStart="15dp"
+            android:text="Siguiente" />
+
+    </RelativeLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

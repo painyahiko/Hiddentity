@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Principal extends Activity {
+public class PrincipalActivity extends Activity {
 
     Button btn, pasar, terminar, jugar, reglas;
     Database database;
@@ -37,7 +37,7 @@ public class Principal extends Activity {
         final Button jugar = findViewById(R.id.btnJugar);
         final Button reglas = findViewById(R.id.btnReglas);
 
-        partida = new TimesUp(database);
+       // partida = new TimesUp(database);
 
         //personaje.setText(personajes[posicion]);
 
@@ -71,7 +71,7 @@ public class Principal extends Activity {
         terminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Principal.this, PointmarkActivity.class);
+                Intent intent = new Intent(PrincipalActivity.this, PointmarkActivity.class);
                 startActivity(intent);
             }
         });*/
@@ -80,13 +80,16 @@ public class Principal extends Activity {
             @Override
             public void onClick(View v) {
 
+                Intent partida = new Intent(PrincipalActivity.this,PartidaActivity.class);
+                startActivity(partida);
+
             }
         });
 
         reglas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent reglas = new Intent(getApplicationContext(),Reglas.class);
+                Intent reglas = new Intent(PrincipalActivity.this,Reglas.class);
                 startActivity(reglas);
             }
         });
