@@ -3,7 +3,7 @@ package com.example.david.hiddentity;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class Reglas extends Activity {
+public class ReglasActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

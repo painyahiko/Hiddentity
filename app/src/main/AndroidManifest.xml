@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PointmarkActivity" />
-        <activity android:name=".Reglas" />
+        <activity android:name=".ReglasActivity" />
         <activity android:name=".PartidaActivity"></activity>
     </application>
 

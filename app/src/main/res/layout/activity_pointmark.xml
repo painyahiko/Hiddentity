@@ -8,6 +8,7 @@
 
 
     <LinearLayout
+        android:id="@+id/pointMarkLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -33,14 +34,14 @@
                     android:id="@+id/rojoInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="El equipo rojo tiene 15 puntos"
+                    android:text="El equipo rojo tiene 0 puntos"
                     android:layout_marginBottom="10dp"/>
 
                 <TextView
                     android:id="@+id/azulInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="El equipo azul tiene 15 puntos"/>
+                    android:text="El equipo azul tiene 0 puntos"/>
 
             </LinearLayout>
 

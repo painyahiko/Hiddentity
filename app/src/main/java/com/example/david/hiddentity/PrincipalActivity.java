@@ -11,12 +11,8 @@ import android.widget.TextView;
 
 public class PrincipalActivity extends Activity {
 
-    Button btn, pasar, terminar, jugar, reglas;
+    Button jugar, reglas;
     Database database;
-    TextView texto, personaje;
-    TimesUp partida;
-    int posicion = 0;
-    int puntuacion = 0;
     public static SQLiteDatabase db;
 
     @Override
@@ -34,8 +30,8 @@ public class PrincipalActivity extends Activity {
                 database.openOrCreate();
             }
         });
-        final Button jugar = findViewById(R.id.btnJugar);
-        final Button reglas = findViewById(R.id.btnReglas);
+        jugar = findViewById(R.id.btnJugar);
+        reglas = findViewById(R.id.btnReglas);
 
        // partida = new TimesUp(database);
 
@@ -89,7 +85,7 @@ public class PrincipalActivity extends Activity {
         reglas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent reglas = new Intent(PrincipalActivity.this,Reglas.class);
+                Intent reglas = new Intent(PrincipalActivity.this,ReglasActivity.class);
                 startActivity(reglas);
             }
         });

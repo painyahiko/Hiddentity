@@ -6,8 +6,10 @@
     tools:context="com.example.david.hiddentity.PartidaActivity">
 
     <RelativeLayout
+        android:id="@+id/partidaLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/teamRed">
 
         <TextView
             android:id="@+id/puntos"
@@ -16,7 +18,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:text="puntos:" />
+            android:text="puntos: 0" />
 
         <TextView
             android:id="@+id/tiempo"

@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,9 +18,10 @@ import java.util.ArrayList;
 
 public class PointmarkActivity extends AppCompatActivity {
 
-    TextView rojoInfo;
+    TextView rojoInfo,azulInfo;
     ListView listView;
-    private RecyclerView.Adapter mAdapter;
+    Button startGame;
+    LinearLayout pointMarkLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,22 +29,40 @@ public class PointmarkActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pointmark);
 
         rojoInfo = findViewById(R.id.rojoInfo);
+        azulInfo = findViewById(R.id.azulInfo);
+        listView = findViewById(R.id.listview);
+        startGame = findViewById(R.id.nextTeam);
+        pointMarkLayout = findViewById(R.id.pointMarkLayout);
 
         Intent intent = this.getIntent();
-        TimesUp partida = intent.getParcelableExtra("partida");
-
-        listView = findViewById(R.id.listview);
-        ArrayList<String> lista = new ArrayList<String>();
-
-        for(int i = 0;i<30;i++){
-            lista.add("personaje " + i);
+        final TimesUp partida = intent.getParcelableExtra("partida");
+        ArrayAdapter<String> datos;
+        if(partida.redTurn) {
+            pointMarkLayout.setBackgroundColor(getResources().getColor(R.color.teamRed));
+            datos = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, partida.personajesRojos);
+        } else{
+            pointMarkLayout.setBackgroundColor(getResources().getColor(R.color.teamBlue));
+            datos = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, partida.personajesAzules);
         }
 
-        ArrayAdapter<String> datos = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, partida.personajesRojos);
-
         listView.setAdapter(datos);
-        Log.e("redpoint2",partida.redPoints + partida.personajes.get(1));
-        rojoInfo.setText(partida.redPoints + "");
+        rojoInfo.setText("El equipo rojo tiene " + partida.redPoints + " puntos");
+        azulInfo.setText("El equipo azul tiene " + partida.bluePoints + " puntos");
+
+
+        startGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(partida.redTurn){
+                    partida.redTurn = false;
+                } else {
+                    partida.redTurn = true;
+                }
+                Intent intent = new Intent(PointmarkActivity.this,PartidaActivity.class);
+                intent.putExtra("partida",partida);
+                startActivity(intent);
+            }
+        });
 
     }
 
