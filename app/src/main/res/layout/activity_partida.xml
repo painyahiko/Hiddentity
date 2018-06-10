@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,7 +19,10 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:text="puntos: 0" />
+            android:fontFamily="casual"
+            android:text="puntos: 0"
+            android:textColor="@android:color/background_dark"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tiempo"
@@ -28,8 +32,11 @@
             android:layout_alignParentTop="true"
             android:layout_marginEnd="36dp"
             android:layout_marginTop="15dp"
+            android:fontFamily="casual"
             android:gravity="right"
-            android:text="tiempo" />
+            android:text="tiempo"
+            android:textColor="@android:color/background_dark"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/personaje"
@@ -37,18 +44,45 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tiempo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="149dp"
+            android:layout_marginTop="205dp"
+            android:fontFamily="casual"
             android:gravity="center"
-            android:text="personaje" />
+            android:text="personaje"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnsiguiente"
+            style="@android:style/Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="31dp"
-            android:layout_marginStart="15dp"
-            android:text="Siguiente" />
+            android:layout_alignStart="@+id/puntos"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/acierto"
+            android:fontFamily="casual"
+            android:text="¡Correcto!"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnPaso"
+            style="@android:style/Widget.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/btnsiguiente"
+            android:layout_alignBottom="@+id/btnsiguiente"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="14dp"
+            android:layout_toEndOf="@+id/personaje"
+            android:backgroundTint="@color/paso"
+            android:fontFamily="casual"
+            android:text="Paso"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

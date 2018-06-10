@@ -11,37 +11,61 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ViewAnimator
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteY="341dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/lineas"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="79dp">
 
-            <ImageView
-                android:id="@+id/imageView"
+            <ViewAnimator
                 android:layout_width="match_parent"
-                android:layout_height="211dp"
-                android:adjustViewBounds="false"
-                android:cropToPadding="false"
-                android:src="@drawable/hiddentity"
-                tools:layout_editor_absoluteY="57dp" />
-        </ViewAnimator>
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteY="341dp">
 
-        <Button
-            android:id="@+id/btnJugar"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="Jugar"
-             />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="211dp"
+                    android:adjustViewBounds="false"
+                    android:cropToPadding="false"
+                    android:src="@drawable/hiddentity"
+                    tools:layout_editor_absoluteY="57dp" />
+            </ViewAnimator>
 
-        <Button
-            android:id="@+id/btnReglas"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reglas" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/btnJugar"
+                    style="@android:style/Widget.Holo.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="casual"
+                    android:text="Jugar"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnReglas"
+                    style="@android:style/Widget.Holo.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="casual"
+                    android:text="Reglas"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/holo_orange_light" />
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.david.hiddentity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class PartidaActivity extends AppCompatActivity {
+public class PartidaActivity extends Activity {
 
     TextView tiempo,personaje,puntos;
     Button siguiente;

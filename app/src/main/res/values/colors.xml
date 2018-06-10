@@ -5,5 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="teamBlue">#D9FEF8</color>
     <color name="teamRed">#FBC6D2</color>
+    <color name="acierto">#42f459</color>
+    <color name="paso">#ff0505</color>
 
 </resources>
