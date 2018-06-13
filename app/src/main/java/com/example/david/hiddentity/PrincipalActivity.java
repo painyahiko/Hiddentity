@@ -7,11 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class PrincipalActivity extends Activity {
 
-    Button jugar, reglas;
+    Button jugar, reglas, personalizar;
     Database database;
     public static SQLiteDatabase db;
 
@@ -32,53 +31,17 @@ public class PrincipalActivity extends Activity {
         });
         jugar = findViewById(R.id.btnJugar);
         reglas = findViewById(R.id.btnReglas);
+        personalizar = findViewById(R.id.btnMazos);
 
-       // partida = new TimesUp(database);
-
-        //personaje.setText(personajes[posicion]);
-
-        /*btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new CountDownTimer(30000, 1000) {
-
-                    public void onTick(long millisUntilFinished) {
-                        texto.setText("" + (millisUntilFinished / 1000));
-                    }
-
-                    public void onFinish() {
-                        texto.setText("done!");
-                    }
-                }.start();
-            }
-        });
-
-        pasar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //personaje.setText(personajes.get(posicion));
-                posicion++;
-                puntuacion++;
-
-
-            }
-        });
-
-        terminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PrincipalActivity.this, PointmarkActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent partida = new Intent(PrincipalActivity.this,PartidaActivity.class);
+                Intent partida = new Intent(PrincipalActivity.this,ParametrosActivity.class);
                 startActivity(partida);
-
+             /*   Intent partida = new Intent(PrincipalActivity.this,PartidaActivity.class);
+                startActivity(partida);*/
             }
         });
 
@@ -87,6 +50,14 @@ public class PrincipalActivity extends Activity {
             public void onClick(View v) {
                 Intent reglas = new Intent(PrincipalActivity.this,ReglasActivity.class);
                 startActivity(reglas);
+            }
+        });
+
+        personalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent personalizar = new Intent(PrincipalActivity.this,PersonalizarActivity.class);
+                startActivity(personalizar);
             }
         });
 

@@ -32,7 +32,6 @@ public class PartidaActivity extends Activity {
 
         final TimesUp partida;
 
-        if(this.getIntent().getParcelableExtra("partida") != null) {
             Intent intent = this.getIntent();
             partida = intent.getParcelableExtra("partida");
 
@@ -43,18 +42,11 @@ public class PartidaActivity extends Activity {
                 puntos.setText("Puntos: " + partida.bluePoints);
                 partidaLayout.setBackgroundColor(getResources().getColor(R.color.teamBlue));
             }
-        }else{
-            Database database = new Database(PrincipalActivity.db);
 
-            ArrayList<String> personajes = new ArrayList<String>();
-            personajes = database.elegirPersonajes(30);
-
-             partida = new TimesUp(personajes);
-        }
 
         personaje.setText(partida.personajes.get(0));
-
-        new CountDownTimer(10000, 1000) {
+Log.e("tiempo", String.valueOf(partida.tiempo));
+        new CountDownTimer(partida.tiempo, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 tiempo.setText("" + (millisUntilFinished / 1000));

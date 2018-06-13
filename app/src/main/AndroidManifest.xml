@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PrincipalActivity">
+        <activity
+            android:name=".PrincipalActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar.TranslucentDecor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +25,11 @@
         <activity android:name=".PointmarkActivity" />
         <activity android:name=".ReglasActivity" />
         <activity android:name=".PartidaActivity" />
-        <activity android:name=".SelectDeckActivity"></activity>
+        <activity android:name=".PersonalizarActivity" />
+        <activity android:name=".ParametrosActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".CreateDeckActivity"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

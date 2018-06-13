@@ -1,9 +1,7 @@
 package com.example.david.hiddentity;
 
-import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -16,14 +14,16 @@ public class TimesUp implements Parcelable {
     Boolean redTurn;
     int redPoints;
     int bluePoints;
+    int tiempo;
     ArrayList<String> personajes = new ArrayList<String>();
     ArrayList<String> personajesRojos;
     ArrayList<String> personajesAzules;
 
 
 
-    public TimesUp(ArrayList<String> personajes){
+    public TimesUp(ArrayList<String> personajes,int tiempo){
         this.personajes = personajes;
+        this.tiempo = tiempo*1000;
         redTurn = true;
         bluePoints = 0;
         redPoints = 0;
@@ -40,6 +40,7 @@ public class TimesUp implements Parcelable {
         redTurn = redTurnVal == 0x02 ? null : redTurnVal != 0x00;
         redPoints = in.readInt();
         bluePoints = in.readInt();
+        tiempo = in.readInt();
         if (in.readByte() == 0x01) {
             personajes = new ArrayList<String>();
             in.readList(personajes, String.class.getClassLoader());
@@ -74,6 +75,7 @@ public class TimesUp implements Parcelable {
         }
         dest.writeInt(redPoints);
         dest.writeInt(bluePoints);
+        dest.writeInt(tiempo);
         if (personajes == null) {
             dest.writeByte((byte) (0x00));
         } else {

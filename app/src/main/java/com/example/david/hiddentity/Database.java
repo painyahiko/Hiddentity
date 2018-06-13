@@ -20,7 +20,7 @@ public class Database {
     }
 
     public SQLiteDatabase openOrCreate(){
-        db.execSQL("DROP TABLE IF EXISTS personajes");
+       // db.execSQL("DROP TABLE IF EXISTS personajes");
         db.execSQL("CREATE TABLE IF NOT EXISTS personajes(id INT, nombre Varchar, grupo INT);");
         db.execSQL("INSERT INTO personajes VALUES (1,'Pikachu',1);");
         db.execSQL("INSERT INTO personajes VALUES (2,'Joker',1);");
@@ -124,12 +124,19 @@ public class Database {
         db.execSQL("INSERT INTO personajes VALUES (100,'Miguel de Cervantes',1);");
 
 
+      //  db.execSQL("DROP TABLE IF EXISTS mazos");
+        db.execSQL("CREATE TABLE IF NOT EXISTS mazos(id INT, nombre Varchar, grupo INT);");
+        db.execSQL("INSERT INTO mazos VALUES (1,'Predeterminado',1);");
+        db.execSQL("INSERT INTO mazos VALUES (2,'crear mazo',2);");
+        db.execSQL("INSERT INTO mazos VALUES (3,'crear mazo',3);");
+        db.execSQL("INSERT INTO mazos VALUES (4,'crear mazo',4);");
+        db.execSQL("INSERT INTO mazos VALUES (5,'crear mazo',5);");
         return db;
     }
 
-    public ArrayList<String> elegirPersonajes(int num){
+    public ArrayList<String> elegirPersonajes(int num,int grupo){
         ArrayList<String> elegidos = new ArrayList<String>();
-        final Cursor c = db.rawQuery("SELECT nombre FROM personajes ORDER BY RANDOM() LIMIT "+num+";", null);
+        final Cursor c = db.rawQuery("SELECT nombre FROM personajes WHERE grupo = '" + grupo + "'ORDER BY RANDOM() LIMIT "+num+";", null);
         for (int i=0;i<num;i++){
             if(c.moveToPosition(i)){
                 elegidos.add(c.getString(0));
@@ -138,7 +145,40 @@ public class Database {
         return elegidos;
     }
 
+    public ArrayList<String> nombresMazos(){
+        ArrayList<String> elegidos = new ArrayList<String>();
+        final Cursor c = db.rawQuery("SELECT nombre FROM mazos;", null);
+        for (int i=0;i<5;i++){
+            if(c.moveToPosition(i)){
+                elegidos.add(c.getString(0));
+            }
+        }
+        return elegidos;
+    }
+
+    public void cambiarNombreMazo(String nombre,Integer grupo){
+        db.execSQL("UPDATE mazos SET nombre='" + nombre + "' WHERE grupo='" + grupo + "';");
+    }
+
+    public void meterPersonaje(String personaje,Integer grupo){
+        db.execSQL("INSERT INTO personajes VALUES ('','" + personaje + "','" + grupo + "');");
+    }
+    public void borrarPersonajesGrupo(Integer grupo){
+        db.execSQL("DELETE FROM personajes WHERE grupo='"+grupo+"';");
+    }
+
+    public ArrayList<String> getGrupo(Integer grupo){
+        ArrayList<String> personajes = new ArrayList<String>();
+        final Cursor c = db.rawQuery("SELECT nombre FROM personajes WHERE grupo = '" + grupo + "';", null);
+        for (int i=0;i<c.getCount();i++){
+            if(c.moveToPosition(i)){
+                personajes.add(c.getString(0));
+            }
+        }
+        return personajes;
+    }
 
 
 
+    //db.execSQL("UPDATE usuarios SET usuario='" + usu + "',contraseña='" + paswd + "';");
 }

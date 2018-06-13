@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.david.hiddentity.SelectDeckActivity">
+    tools:context="com.example.david.hiddentity.PersonalizarActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,24 +12,50 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/grupo1"
             style="@android:style/Widget.Holo.Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="casual"
-            android:text="Mazo Predeterminado"
+            android:text="Crear Mazo"
             android:textAllCaps="true"
             android:textColor="@android:color/holo_red_light"
             android:textStyle="bold"
             />
 
         <Button
+            android:id="@+id/grupo2"
             style="@android:style/Widget.Holo.Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="casual"
-            android:text="Mazos Personalizados"
+            android:text="Crear Mazo"
+            android:textAllCaps="true"
+            android:textColor="@android:color/holo_red_light"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/grupo3"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="casual"
+            android:text="Crear Mazo"
+            android:textAllCaps="true"
+            android:textColor="@android:color/holo_red_light"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/grupo4"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="casual"
+            android:text="Crear Mazo"
             android:textAllCaps="true"
             android:textColor="@android:color/holo_red_light"
             android:textStyle="bold"/>
