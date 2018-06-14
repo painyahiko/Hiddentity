@@ -98,4 +98,10 @@ public class PartidaActivity extends Activity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
+
 }

@@ -147,5 +147,10 @@ public class PointmarkActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
 
 }

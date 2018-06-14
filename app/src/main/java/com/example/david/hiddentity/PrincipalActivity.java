@@ -72,4 +72,10 @@ public class PrincipalActivity extends Activity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
+
 }

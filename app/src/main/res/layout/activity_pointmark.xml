@@ -21,8 +21,9 @@
 
             <TextView
                 android:id="@+id/rojoInfo"
-                android:layout_width="184dp"
-                android:layout_height="44dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:background="@color/redButton"
                 android:text="0"
                 android:textSize="30dp"
@@ -32,6 +33,7 @@
                 android:id="@+id/azulInfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:background="@color/blueButton"
                 android:textSize="30dp"
                 android:text="0"
