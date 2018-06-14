@@ -67,8 +67,7 @@ public class CreateDeckActivity extends AppCompatActivity {
         terminarMazo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("asd", String.valueOf(personajes.size()));
-                if(personajes.size()<30 && !mazoText.getText().toString().equals("")){
+                if(personajes.size()>=30 && !mazoText.getText().toString().equals("")){
 
                     database.borrarPersonajesGrupo(grupo);
                     for(int i=0;i<personajes.size();i++){

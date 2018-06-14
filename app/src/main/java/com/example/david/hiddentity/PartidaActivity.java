@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class PartidaActivity extends Activity {
 
@@ -43,10 +44,10 @@ public class PartidaActivity extends Activity {
                 partidaLayout.setBackgroundColor(getResources().getColor(R.color.teamBlue));
             }
 
+        Collections.shuffle(partida.personajes);
 
         personaje.setText(partida.personajes.get(0));
-Log.e("tiempo", String.valueOf(partida.tiempo));
-        new CountDownTimer(partida.tiempo, 1000) {
+        final CountDownTimer countDownTimer = new CountDownTimer(partida.tiempo, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 tiempo.setText("" + (millisUntilFinished / 1000));
@@ -75,6 +76,7 @@ Log.e("tiempo", String.valueOf(partida.tiempo));
                 if(partida.personajes.isEmpty()){
                     Intent intent = new Intent(PartidaActivity.this,PointmarkActivity.class);
                     intent.putExtra("partida",partida);
+                    countDownTimer.cancel();
                     startActivity(intent);
                 }else {
                     personaje.setText(partida.personajes.get(0));

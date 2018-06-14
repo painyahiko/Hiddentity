@@ -178,6 +178,17 @@ public class Database {
         return personajes;
     }
 
+    public int numeroPersonajes(Integer grupo){
+        final Cursor c = db.rawQuery("SELECT nombre FROM personajes WHERE grupo = '" + grupo + "';", null);
+        return c.getCount();
+    }
+
+    public int numeroGrupo(String nombre){
+        final Cursor c = db.rawQuery("SELECT grupo FROM mazos WHERE nombre = '" + nombre + "';", null);
+        c.moveToFirst();
+        return c.getInt(0);
+    }
+
 
 
     //db.execSQL("UPDATE usuarios SET usuario='" + usu + "',contraseña='" + paswd + "';");

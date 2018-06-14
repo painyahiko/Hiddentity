@@ -40,8 +40,6 @@ public class PrincipalActivity extends Activity {
 
                 Intent partida = new Intent(PrincipalActivity.this,ParametrosActivity.class);
                 startActivity(partida);
-             /*   Intent partida = new Intent(PrincipalActivity.this,PartidaActivity.class);
-                startActivity(partida);*/
             }
         });
 

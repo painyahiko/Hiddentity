@@ -1,6 +1,9 @@
 package com.example.david.hiddentity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +20,7 @@ public class ParametrosActivity extends AppCompatActivity {
 
     Button empezar,cancelar;
     Spinner mazos;
-    Integer numeroMazo;
+    int numeroMazo;
     EditText tiempo,cartas;
 
     TimesUp partida;
@@ -38,7 +41,7 @@ public class ParametrosActivity extends AppCompatActivity {
         ArrayList<String> mazosDatabase = new ArrayList<String>();
         mazosDatabase = database.nombresMazos();
 
-        ArrayList<String> listamazos = new ArrayList<String>();
+        final ArrayList<String> listamazos = new ArrayList<String>();
 
         for(int i=0;i<mazosDatabase.size();i++){
             if(!mazosDatabase.get(i).equalsIgnoreCase("crear mazo")){
@@ -55,16 +58,49 @@ public class ParametrosActivity extends AppCompatActivity {
         empezar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<String> personajes = new ArrayList<String>();
-                int numeroCartas = Integer.parseInt(cartas.getText().toString());
-                int tiempoPartida = Integer.parseInt(tiempo.getText().toString());
-                personajes = database.elegirPersonajes(numeroCartas,numeroMazo);
-                partida = new TimesUp(personajes,tiempoPartida);
-                Log.e("cartas y tiempo",personajes.size() + " " + partida.tiempo);
 
-                Intent intent = new Intent(ParametrosActivity.this,PartidaActivity.class);
-                intent.putExtra("partida",partida);
-                startActivity(intent);
+                final int pjDisponibles = database.numeroPersonajes(numeroMazo);
+                final int numeroCartas = Integer.parseInt(cartas.getText().toString());
+
+                if(database.numeroPersonajes(numeroMazo)<numeroCartas){
+                    AlertDialog.Builder builder;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        builder = new AlertDialog.Builder(ParametrosActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+                    } else {
+                        builder = new AlertDialog.Builder(ParametrosActivity.this);
+                    }
+                    builder.setTitle("No dispones de tantos personajes")
+                            .setMessage("Si acepta jugara con " + pjDisponibles + " personajes (máximo disponible)")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    ArrayList<String> personajes = new ArrayList<String>();
+                                    int tiempoPartida = Integer.parseInt(tiempo.getText().toString());
+                                    personajes = database.elegirPersonajes(numeroCartas,numeroMazo);
+                                    partida = new TimesUp(personajes,tiempoPartida);
+                                    Intent intent = new Intent(ParametrosActivity.this,PartidaActivity.class);
+                                    intent.putExtra("partida",partida);
+                                    startActivity(intent);
+
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // cerramos alert
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }else{
+                    ArrayList<String> personajes = new ArrayList<String>();
+                    int tiempoPartida = Integer.parseInt(tiempo.getText().toString());
+                    personajes = database.elegirPersonajes(numeroCartas,numeroMazo);
+                    partida = new TimesUp(personajes,tiempoPartida);
+                    Intent intent = new Intent(ParametrosActivity.this,PartidaActivity.class);
+                    intent.putExtra("partida",partida);
+                    startActivity(intent);
+                }
+
 
             }
         });
@@ -72,7 +108,7 @@ public class ParametrosActivity extends AppCompatActivity {
         mazos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                numeroMazo = i+1;
+                numeroMazo = database.numeroGrupo(listamazos.get(i));
             }
 
             @Override
