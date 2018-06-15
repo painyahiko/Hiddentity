@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ConstraintPointMark"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.david.hiddentity.PointmarkActivity">
-
 
     <LinearLayout
         android:id="@+id/pointMarkLayout"
@@ -15,7 +15,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
 
@@ -27,6 +27,7 @@
                 android:background="@color/redButton"
                 android:text="0"
                 android:textSize="30dp"
+                android:gravity="center"
                 android:textAlignment="center" />
 
             <TextView
@@ -37,16 +38,25 @@
                 android:background="@color/blueButton"
                 android:textSize="30dp"
                 android:text="0"
+                android:gravity="center"
                 android:textAlignment="center" />
 
 
         </LinearLayout>
-        <Button
-            android:id="@+id/nextTeam"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/greenButton"
-            android:text="Siguiente equipo"/>
+            android:background="@color/greenButton">
+            <TextView
+                android:id="@+id/resumen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="Resumen"
+                android:textAlignment="center" />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -54,13 +64,34 @@
             <ListView
                 android:id="@+id/listview"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:scrollbars="vertical" />
 
         </LinearLayout>
 
     </LinearLayout>
 
+    <LinearLayout
+        app:layout_constraintBottom_toBottomOf="@+id/ConstraintPointMark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/nextTeam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/greenButton"
+            android:text="Siguiente equipo"/>
+        <Button
+            android:id="@+id/salir"
+            android:layout_width="match_parent"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:background="@color/salir"
+            android:text="Salir"/>
+
+    </LinearLayout>
 
 
 

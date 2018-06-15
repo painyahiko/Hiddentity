@@ -16,14 +16,14 @@ import java.util.Collections;
 
 public class PartidaActivity extends Activity {
 
-    TextView tiempo,personaje,puntos;
+    TextView tiempo,personaje,puntosRojos,puntosAzules;
     Button siguiente;
     RelativeLayout partidaLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View decorView = getWindow().getDecorView();
+        final View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE
                         // Set the content to appear under the system bars so that the
@@ -39,7 +39,8 @@ public class PartidaActivity extends Activity {
 
         tiempo = findViewById(R.id.tiempo);
         personaje = findViewById(R.id.personaje);
-        puntos = findViewById(R.id.puntos);
+        puntosRojos = findViewById(R.id.rojoInfoPartida);
+        puntosAzules = findViewById(R.id.azulInfoPartida);
         siguiente = findViewById(R.id.btnsiguiente);
         partidaLayout = findViewById(R.id.partidaLayout);
 
@@ -49,12 +50,13 @@ public class PartidaActivity extends Activity {
             partida = intent.getParcelableExtra("partida");
 
             if(partida.redTurn){
-                puntos.setText("Puntos: " + partida.redPoints);
                 partidaLayout.setBackgroundColor(getResources().getColor(R.color.teamRed));
             } else {
-                puntos.setText("Puntos: " + partida.bluePoints);
                 partidaLayout.setBackgroundColor(getResources().getColor(R.color.teamBlue));
             }
+
+        puntosRojos.setText(partida.redPoints + "");
+        puntosAzules.setText(partida.bluePoints + "");
 
         Collections.shuffle(partida.personajes);
 
@@ -78,12 +80,12 @@ public class PartidaActivity extends Activity {
                 if(partida.redTurn) {
                     partida.redPoints++;
                     partida.personajesRojos.add(partida.personajes.get(0));
-                    puntos.setText("Puntos: " + partida.redPoints);
+                    puntosRojos.setText(partida.redPoints + "");
                     partida.personajes.remove(partida.personajes.get(0));
                 } else {
                     partida.bluePoints++;
                     partida.personajesAzules.add(partida.personajes.get(0));
-                    puntos.setText("Puntos: " + partida.bluePoints);
+                    puntosAzules.setText(partida.bluePoints + "");
                     partida.personajes.remove(partida.personajes.get(0));
                 }
                 if(partida.personajes.isEmpty()){
@@ -95,6 +97,22 @@ public class PartidaActivity extends Activity {
                     personaje.setText(partida.personajes.get(0));
                 }
 
+            }
+        });
+
+        partidaLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                decorView.setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_IMMERSIVE
+                                // Set the content to appear under the system bars so that the
+                                // content doesn't resize when the system bars hide and show.
+                                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                // Hide the nav bar and status bar
+                                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_FULLSCREEN);
             }
         });
 

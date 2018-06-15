@@ -15,9 +15,11 @@ public class TimesUp implements Parcelable {
     int redPoints;
     int bluePoints;
     int tiempo;
-    ArrayList<String> personajes = new ArrayList<String>();
+    ArrayList<String> personajes = new ArrayList<>();
     ArrayList<String> personajesRojos;
     ArrayList<String> personajesAzules;
+    ArrayList<String> jugadoresRojos;
+    ArrayList<String> jugadoresAzules;
 
 
 
@@ -27,13 +29,13 @@ public class TimesUp implements Parcelable {
         redTurn = true;
         bluePoints = 0;
         redPoints = 0;
-        personajesAzules = new ArrayList<String>();
-        personajesRojos = new ArrayList<String>();
+        personajesAzules = new ArrayList<>();
+        personajesRojos = new ArrayList<>();
+        jugadoresRojos = new ArrayList<>();
+        jugadoresAzules = new ArrayList<>();
     }
 
-
-
-    //Implementacion de Parcelable para pasar el objeto entre actividades
+    //Implementacion de parcelable para pasar el objeto entre actividades
 
     protected TimesUp(Parcel in) {
         byte redTurnVal = in.readByte();
@@ -58,6 +60,18 @@ public class TimesUp implements Parcelable {
             in.readList(personajesAzules, String.class.getClassLoader());
         } else {
             personajesAzules = null;
+        }
+        if (in.readByte() == 0x01) {
+            jugadoresRojos = new ArrayList<String>();
+            in.readList(jugadoresRojos, String.class.getClassLoader());
+        } else {
+            jugadoresRojos = null;
+        }
+        if (in.readByte() == 0x01) {
+            jugadoresAzules = new ArrayList<String>();
+            in.readList(jugadoresAzules, String.class.getClassLoader());
+        } else {
+            jugadoresAzules = null;
         }
     }
 
@@ -93,6 +107,18 @@ public class TimesUp implements Parcelable {
         } else {
             dest.writeByte((byte) (0x01));
             dest.writeList(personajesAzules);
+        }
+        if (jugadoresRojos == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(jugadoresRojos);
+        }
+        if (jugadoresAzules == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(jugadoresAzules);
         }
     }
 

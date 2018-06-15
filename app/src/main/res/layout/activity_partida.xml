@@ -10,48 +10,70 @@
         android:id="@+id/partidaLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/teamRed">
+        android:background="@color/teamRed"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/puntos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="casual"
-            android:text="puntos: 0"
-            android:textColor="@android:color/background_dark"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/rojoInfoPartida"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/redButton"
+                android:gravity="center"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/azulInfoPartida"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/blueButton"
+                android:gravity="center"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/tiempo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="36dp"
-            android:layout_marginTop="15dp"
+            android:layout_alignTop="@+id/personaje"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="99dp"
             android:fontFamily="casual"
-            android:gravity="right"
             android:text="tiempo"
             android:textColor="@android:color/background_dark"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/personaje"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tiempo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="205dp"
+            android:layout_centerVertical="true"
             android:fontFamily="casual"
             android:gravity="center"
             android:text="personaje"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
-            android:textSize="24sp"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
         <Button
@@ -60,9 +82,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/puntos"
             android:layout_marginBottom="30dp"
-            android:backgroundTint="@color/acierto"
+            android:background="@color/correcto"
             android:fontFamily="casual"
             android:text="Correcto"
             android:textColor="@android:color/black"
@@ -85,7 +106,6 @@
             android:visibility="invisible" />
 
     </RelativeLayout>
-
 
 
 </android.support.constraint.ConstraintLayout>

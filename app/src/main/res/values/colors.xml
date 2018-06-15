@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="teamBlue">#626FEC</color>
-    <color name="teamRed">#DB4141</color>
+    <color name="teamRed">#AC413C</color>
     <color name="acierto">#42f459</color>
     <color name="paso">#ff0505</color>
     <color name="redButton">#8E1A1A</color>
@@ -12,6 +12,8 @@
     <color name="greenButton">#1D4B38</color>
     <color name="blueDialog">#206096</color>
     <color name="redDialog">#AF2E46</color>
+    <color name="correcto">#37A34B</color>
+    <color name="salir">#4C0C0C</color>
 
 
     <color name="black_overlay">#66000000</color>

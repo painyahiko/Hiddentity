@@ -26,10 +26,13 @@
         <activity android:name=".ReglasActivity" />
         <activity android:name=".PartidaActivity" />
         <activity android:name=".PersonalizarActivity" />
-        <activity android:name=".ParametrosActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".CreateDeckActivity"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".ParametrosActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".CreateDeckActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".RecuentoActivity"></activity>
     </application>
 
 </manifest>

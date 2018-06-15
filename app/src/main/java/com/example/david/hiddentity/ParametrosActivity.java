@@ -73,66 +73,6 @@ public class ParametrosActivity extends AppCompatActivity {
 
         mazos.setAdapter(adaptador);
 
-        empezar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.e("asdf",cartas.getText().toString() + " ");
-                if(!cartas.getText().toString().equals("") && !tiempo.getText().toString().equals("") && !tiempo.getText().toString().equals("0") && !cartas.getText().toString().equals("0") ){
-                    final int numeroCartas = Integer.parseInt(cartas.getText().toString());
-                    final int tiempoPartida = Integer.parseInt(tiempo.getText().toString());
-
-                    final int pjDisponibles = database.numeroPersonajes(numeroMazo);
-
-                    if (database.numeroPersonajes(numeroMazo) < numeroCartas) {
-                        AlertDialog.Builder builder;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            builder = new AlertDialog.Builder(ParametrosActivity.this, android.R.style.Theme_Material_Dialog_Alert);
-                        } else {
-                            builder = new AlertDialog.Builder(ParametrosActivity.this);
-                        }
-                        builder.setTitle("No dispones de tantos personajes")
-                                .setMessage("Si acepta jugara con " + pjDisponibles + " personajes (máximo disponible)")
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                        ArrayList<String> personajes;
-                                        personajes = database.elegirPersonajes(numeroCartas, numeroMazo);
-                                        partida = new TimesUp(personajes, tiempoPartida);
-                                        Intent intent = new Intent(ParametrosActivity.this, PartidaActivity.class);
-                                        intent.putExtra("partida", partida);
-                                        startActivity(intent);
-
-                                    }
-                                })
-                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // cerramos alert
-                                    }
-                                })
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
-                    } else {
-                        ArrayList<String> personajes;
-                        personajes = database.elegirPersonajes(numeroCartas, numeroMazo);
-                        partida = new TimesUp(personajes, tiempoPartida);
-                        Intent intent = new Intent(ParametrosActivity.this, PartidaActivity.class);
-                        intent.putExtra("partida", partida);
-                        startActivity(intent);
-                    }
-
-                }
-
-
-            }
-        });
-
-        cancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ParametrosActivity.this, PrincipalActivity.class);
-                startActivity(intent);
-            }
-        });
 
         mazos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -278,6 +218,86 @@ public class ParametrosActivity extends AppCompatActivity {
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
+            }
+        });
+
+        empezar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!cartas.getText().toString().equals("") && !tiempo.getText().toString().equals("") && !tiempo.getText().toString().equals("0") && !cartas.getText().toString().equals("0") ){
+                    final int numeroCartas = Integer.parseInt(cartas.getText().toString());
+                    final int tiempoPartida = Integer.parseInt(tiempo.getText().toString());
+
+                    final int pjDisponibles = database.numeroPersonajes(numeroMazo);
+
+                    if (database.numeroPersonajes(numeroMazo) < numeroCartas) {
+                        AlertDialog.Builder builder;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            builder = new AlertDialog.Builder(ParametrosActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+                        } else {
+                            builder = new AlertDialog.Builder(ParametrosActivity.this);
+                        }
+                        builder.setTitle("No dispones de tantos personajes")
+                                .setMessage("Si acepta jugara con " + pjDisponibles + " personajes (máximo disponible)")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        ArrayList<String> personajes;
+                                        personajes = database.elegirPersonajes(numeroCartas, numeroMazo);
+                                        partida = new TimesUp(personajes, tiempoPartida);
+                                        partida.jugadoresRojos = miembrosRojos;
+                                        partida.jugadoresAzules = miembrosAzules;
+                                        Intent intent = new Intent(ParametrosActivity.this, PartidaActivity.class);
+                                        intent.putExtra("partida", partida);
+                                        startActivity(intent);
+
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // cerramos alert
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                    } else {
+                        ArrayList<String> personajes;
+                        personajes = database.elegirPersonajes(numeroCartas, numeroMazo);
+                        partida = new TimesUp(personajes, tiempoPartida);
+                        partida.jugadoresRojos = miembrosRojos;
+                        partida.jugadoresAzules = miembrosAzules;
+                        Intent intent = new Intent(ParametrosActivity.this, PartidaActivity.class);
+                        intent.putExtra("partida", partida);
+                        startActivity(intent);
+                    }
+
+                } else {
+                    AlertDialog.Builder builder;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        builder = new AlertDialog.Builder(ParametrosActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+                    } else {
+                        builder = new AlertDialog.Builder(ParametrosActivity.this);
+                    }
+                    builder.setTitle("Datos insuficientes")
+                            .setMessage("Los campos tiempo y número de cartas no pueden estar vacios")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
+
+
+            }
+        });
+
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ParametrosActivity.this, PrincipalActivity.class);
+                startActivity(intent);
             }
         });
     }

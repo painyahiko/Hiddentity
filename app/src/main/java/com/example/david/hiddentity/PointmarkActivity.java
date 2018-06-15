@@ -22,9 +22,9 @@ import java.util.ArrayList;
 
 public class PointmarkActivity extends AppCompatActivity {
 
-    TextView rojoInfo,azulInfo;
+    TextView rojoInfo,azulInfo,resumen;
     ListView listView;
-    Button startGame;
+    Button startGame,salir;
     LinearLayout pointMarkLayout;
 
     ArrayAdapter<String> datos;
@@ -32,7 +32,7 @@ public class PointmarkActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View decorView = getWindow().getDecorView();
+        final View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE
                         // Set the content to appear under the system bars so that the
@@ -47,18 +47,32 @@ public class PointmarkActivity extends AppCompatActivity {
 
         rojoInfo = findViewById(R.id.rojoInfo);
         azulInfo = findViewById(R.id.azulInfo);
+        resumen = findViewById(R.id.resumen);
         listView = findViewById(R.id.listview);
         startGame = findViewById(R.id.nextTeam);
+        salir = findViewById(R.id.salir);
         pointMarkLayout = findViewById(R.id.pointMarkLayout);
 
         Intent intent = this.getIntent();
         final TimesUp partida = intent.getParcelableExtra("partida");
         if(partida.redTurn) {
+            if(!partida.jugadoresAzules.isEmpty()) {
+                startGame.setText("Siguiente turno: " + partida.jugadoresAzules.get(0));
+            }else{
+                startGame.setText("Siguiente turno: Equipo Azul");
+            }
+            resumen.setText("Resumen Equipo Rojo");
             pointMarkLayout.setBackgroundColor(getResources().getColor(R.color.teamRed));
-            datos = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, partida.personajesRojos);
+            datos = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, partida.personajesRojos);
         } else{
+            if(!partida.jugadoresRojos.isEmpty()) {
+                startGame.setText("Siguiente turno: " + partida.jugadoresRojos.get(0));
+            }else{
+                startGame.setText("Siguiente turno: Equipo Rojo");
+            }
+            resumen.setText("Resumen Equipo Azul");
             pointMarkLayout.setBackgroundColor(getResources().getColor(R.color.teamBlue));
-            datos = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, partida.personajesAzules);
+            datos = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, partida.personajesAzules);
         }
 
         if(partida.personajes.isEmpty()){
@@ -79,7 +93,8 @@ public class PointmarkActivity extends AppCompatActivity {
                     partida.redTurn = true;
                 }
                 if(partida.personajes.isEmpty()){
-                    Intent intent = new Intent(PointmarkActivity.this,PrincipalActivity.class);
+                    Intent intent = new Intent(PointmarkActivity.this,RecuentoActivity.class);
+                    intent.putExtra("partida",partida);
                     startActivity(intent);
                 } else{
                     Intent intent = new Intent(PointmarkActivity.this,PartidaActivity.class);
@@ -142,6 +157,49 @@ public class PointmarkActivity extends AppCompatActivity {
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
                 }
+            }
+        });
+
+        pointMarkLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                decorView.setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_IMMERSIVE
+                                // Set the content to appear under the system bars so that the
+                                // content doesn't resize when the system bars hide and show.
+                                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                // Hide the nav bar and status bar
+                                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_FULLSCREEN);
+            }
+        });
+
+        salir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder builder;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder = new AlertDialog.Builder(PointmarkActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+                } else {
+                    builder = new AlertDialog.Builder(PointmarkActivity.this);
+                }
+                builder.setTitle("Terminar la partida")
+                        .setMessage("¿Estas seguro que desea terminar la partida?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {Intent intent = new Intent(PointmarkActivity.this,PrincipalActivity.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // cerramos alert
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         });
 
