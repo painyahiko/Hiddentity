@@ -20,4 +20,12 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
+    <style name="RedDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/redDialog</item>
+    </style>
+
+    <style name="BlueDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/blueDialog</item>
+    </style>
+
 </resources>

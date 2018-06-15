@@ -79,12 +79,13 @@ public class PartidaActivity extends Activity {
                     partida.redPoints++;
                     partida.personajesRojos.add(partida.personajes.get(0));
                     puntos.setText("Puntos: " + partida.redPoints);
+                    partida.personajes.remove(partida.personajes.get(0));
                 } else {
                     partida.bluePoints++;
                     partida.personajesAzules.add(partida.personajes.get(0));
                     puntos.setText("Puntos: " + partida.bluePoints);
+                    partida.personajes.remove(partida.personajes.get(0));
                 }
-                partida.personajes.remove(partida.personajes.get(0));
                 if(partida.personajes.isEmpty()){
                     Intent intent = new Intent(PartidaActivity.this,PointmarkActivity.class);
                     intent.putExtra("partida",partida);
