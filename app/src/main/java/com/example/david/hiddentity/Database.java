@@ -130,6 +130,29 @@ public class Database {
             db.execSQL("INSERT INTO personajes VALUES (98,'Lara Croft',1);");
             db.execSQL("INSERT INTO personajes VALUES (99,'Crash Bandicoot',1);");
             db.execSQL("INSERT INTO personajes VALUES (100,'Miguel de Cervantes',1);");
+            db.execSQL("INSERT INTO personajes VALUES (101,'El lazarillo de Tormes',1);");
+            db.execSQL("INSERT INTO personajes VALUES (102,'Miliki',1);");
+            db.execSQL("INSERT INTO personajes VALUES (103,'Darth Vader',1);");
+            db.execSQL("INSERT INTO personajes VALUES (104,'Bender',1);");
+            db.execSQL("INSERT INTO personajes VALUES (105,'Rambo',1);");
+            db.execSQL("INSERT INTO personajes VALUES (106,'Piolin',1);");
+            db.execSQL("INSERT INTO personajes VALUES (107,'Bill Murray',1);");
+            db.execSQL("INSERT INTO personajes VALUES (108,'Larry Bird',1);");
+            db.execSQL("INSERT INTO personajes VALUES (109,'Andres Iniesta',1);");
+            db.execSQL("INSERT INTO personajes VALUES (110,'Ronaldihno',1);");
+            db.execSQL("INSERT INTO personajes VALUES (111,'Napoleon Bonaparte',1);");
+            db.execSQL("INSERT INTO personajes VALUES (112,'Mahoma',1);");
+            db.execSQL("INSERT INTO personajes VALUES (113,'Juana de Arco',1);");
+            db.execSQL("INSERT INTO personajes VALUES (114,'Teresa de Calcuta',1);");
+            db.execSQL("INSERT INTO personajes VALUES (115,'Coco Chanel',1);");
+            db.execSQL("INSERT INTO personajes VALUES (116,'Madonna',1);");
+            db.execSQL("INSERT INTO personajes VALUES (117,'Morty',1);");
+            db.execSQL("INSERT INTO personajes VALUES (118,'Pocoyo',1);");
+            db.execSQL("INSERT INTO personajes VALUES (119,'Snoopy',1);");
+            db.execSQL("INSERT INTO personajes VALUES (120,'Belen esteban',1);");
+
+
+
 
         }
 
