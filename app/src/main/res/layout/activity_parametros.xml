@@ -79,7 +79,8 @@
                     android:layout_weight="1"
                     android:backgroundTint="@android:color/holo_red_light"
                     android:fontFamily="casual"
-                    android:text="Añadir miembro" />
+                    android:text="Añadir miembro"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/miembroAzul"
@@ -89,7 +90,9 @@
 
                     android:backgroundTint="@android:color/holo_blue_light"
                     android:fontFamily="casual"
-                    android:text="Añadir miembro" />
+                    android:text="Añadir miembro"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <ScrollView
@@ -196,6 +199,7 @@
                     android:backgroundTint="@color/acierto"
                     android:fontFamily="casual"
                     android:text="Empezar"
+                    android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
                 <Button
