@@ -1,12 +1,16 @@
 package com.example.david.hiddentity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,11 +23,13 @@ public class PartidaActivity extends Activity {
     TextView tiempo,personaje,puntosRojos,puntosAzules;
     Button siguiente;
     RelativeLayout partidaLayout;
+    View decorView;
+    CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final View decorView = getWindow().getDecorView();
+        decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE
                         // Set the content to appear under the system bars so that the
@@ -61,7 +67,7 @@ public class PartidaActivity extends Activity {
         Collections.shuffle(partida.personajes);
 
         personaje.setText(partida.personajes.get(0));
-        final CountDownTimer countDownTimer = new CountDownTimer(partida.tiempo, 1000) {
+        countDownTimer = new CountDownTimer(partida.tiempo, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 tiempo.setText("" + (millisUntilFinished / 1000));
@@ -120,6 +126,38 @@ public class PartidaActivity extends Activity {
 
     @Override
     public void onBackPressed() {
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(PartidaActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(PartidaActivity.this);
+        }
+        builder.setTitle("Volver al menu")
+                .setMessage("¿Estas seguro que desea volver al menú?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        countDownTimer.cancel();
+                        Intent intent = new Intent(PartidaActivity.this,PrincipalActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // cerramos alert
+                        decorView.setSystemUiVisibility(
+                                View.SYSTEM_UI_FLAG_IMMERSIVE
+                                        // Set the content to appear under the system bars so that the
+                                        // content doesn't resize when the system bars hide and show.
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                        // Hide the nav bar and status bar
+                                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
 
     }
 

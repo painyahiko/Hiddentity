@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class CreateDeckActivity extends AppCompatActivity {
     Button addCharacter,terminarMazo;
     ListView personajesAdd;
     EditText mazoText,personajeText;
+    TextView numeroPersonajes;
 
     ArrayList<String> personajes = new ArrayList<>();
     ArrayAdapter<String> datos;
@@ -35,6 +37,7 @@ public class CreateDeckActivity extends AppCompatActivity {
         personajesAdd = findViewById(R.id.listviewPersonajes);
         mazoText = findViewById(R.id.editTextNombrarMazo);
         personajeText = findViewById(R.id.editTextPersonaje);
+        numeroPersonajes = findViewById(R.id.numeroPersonajes);
 
         Intent intent = getIntent();
         final int grupo = intent.getIntExtra("GRUPO",0);
@@ -49,16 +52,44 @@ public class CreateDeckActivity extends AppCompatActivity {
             personajesAdd.setAdapter(datos);
         }
 
+        numeroPersonajes.setText(personajes.size() + "");
+
         final Database database = new Database(PrincipalActivity.db);
 
         addCharacter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!personajeText.getText().toString().isEmpty()) {
-                    personajes.add(personajeText.getText().toString());
-                    datos = new ArrayAdapter<>(CreateDeckActivity.this, android.R.layout.simple_list_item_1, personajes);
-                    personajesAdd.setAdapter(datos);
-                    personajeText.setText("");
+                String pj = personajeText.getText().toString();
+                if(!pj.isEmpty()) {
+                    boolean repetido = false;
+                    for(int i = 0;i<personajes.size();i++){
+                        if(pj.equalsIgnoreCase(personajes.get(i))){
+                            repetido = true;
+                        }
+                    }
+                    if(!repetido) {
+                        personajes.add(pj);
+                        datos = new ArrayAdapter<>(CreateDeckActivity.this, android.R.layout.simple_list_item_1, personajes);
+                        personajesAdd.setAdapter(datos);
+                        personajeText.setText("");
+                        numeroPersonajes.setText(personajes.size() + "");
+                    }else{
+                        AlertDialog.Builder builder;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            builder = new AlertDialog.Builder(CreateDeckActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+                        } else {
+                            builder = new AlertDialog.Builder(CreateDeckActivity.this);
+                        }
+                        builder.setTitle("Personaje Repetido")
+                                .setMessage("El personaje " + pj + " esta repetido")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //cerramos alert
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                    }
                 }
             }
         });
@@ -117,6 +148,7 @@ public class CreateDeckActivity extends AppCompatActivity {
                                 personajes.remove(i);
                                 datos = new ArrayAdapter<>(CreateDeckActivity.this, android.R.layout.simple_list_item_1, personajes);
                                 personajesAdd.setAdapter(datos);
+                                numeroPersonajes.setText(personajes.size() + "");
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

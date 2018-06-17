@@ -29,10 +29,12 @@ public class PointmarkActivity extends AppCompatActivity {
 
     ArrayAdapter<String> datos;
 
+    View decorView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final View decorView = getWindow().getDecorView();
+        decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE
                         // Set the content to appear under the system bars so that the
@@ -57,6 +59,9 @@ public class PointmarkActivity extends AppCompatActivity {
         final TimesUp partida = intent.getParcelableExtra("partida");
         if(partida.redTurn) {
             if(!partida.jugadoresAzules.isEmpty()) {
+                String auxPersonaje = partida.jugadoresAzules.get(0);
+                partida.jugadoresAzules.remove(0);
+                partida.jugadoresAzules.add(auxPersonaje);
                 startGame.setText("Siguiente turno: " + partida.jugadoresAzules.get(0));
             }else{
                 startGame.setText("Siguiente turno: Equipo Azul");
@@ -66,6 +71,9 @@ public class PointmarkActivity extends AppCompatActivity {
             datos = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, partida.personajesRojos);
         } else{
             if(!partida.jugadoresRojos.isEmpty()) {
+                String auxPersonaje = partida.jugadoresRojos.get(0);
+                partida.jugadoresRojos.remove(0);
+                partida.jugadoresRojos.add(auxPersonaje);
                 startGame.setText("Siguiente turno: " + partida.jugadoresRojos.get(0));
             }else{
                 startGame.setText("Siguiente turno: Equipo Rojo");
@@ -125,6 +133,7 @@ public class PointmarkActivity extends AppCompatActivity {
                                     partida.personajes.add(partida.personajesRojos.get(i));
                                     partida.personajesRojos.remove(i);
                                     partida.redPoints--;
+                                    rojoInfo.setText(partida.redPoints + "");
                                     datos = new ArrayAdapter<>(PointmarkActivity.this, android.R.layout.simple_list_item_1, partida.personajesRojos);
                                     listView.setAdapter(datos);
                                 }
@@ -145,6 +154,7 @@ public class PointmarkActivity extends AppCompatActivity {
                                     partida.personajes.add(partida.personajesAzules.get(i));
                                     partida.personajesAzules.remove(i);
                                     partida.bluePoints--;
+                                    azulInfo.setText(partida.bluePoints + "");
                                     datos = new ArrayAdapter<>(PointmarkActivity.this, android.R.layout.simple_list_item_1, partida.personajesAzules);
                                     listView.setAdapter(datos);
                                 }
@@ -207,6 +217,38 @@ public class PointmarkActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(PointmarkActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(PointmarkActivity.this);
+        }
+        builder.setTitle("Volver al menu")
+                .setMessage("¿Estas seguro que desea volver al menú?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(PointmarkActivity.this,PrincipalActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // cerramos alert
+                        decorView.setSystemUiVisibility(
+                                View.SYSTEM_UI_FLAG_IMMERSIVE
+                                        // Set the content to appear under the system bars so that the
+                                        // content doesn't resize when the system bars hide and show.
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                        // Hide the nav bar and status bar
+                                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
 
     }
 
