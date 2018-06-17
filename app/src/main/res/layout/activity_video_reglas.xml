@@ -19,11 +19,6 @@
             android:layout_gravity="center"
             android:layout_weight="1"/>
 
-        <SeekBar
-            android:id="@+id/seekbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <LinearLayout
             android:id="@+id/botones1"
             android:layout_width="wrap_content"
