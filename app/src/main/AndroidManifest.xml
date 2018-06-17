@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -43,14 +44,12 @@
         <activity
             android:name=".CreateDeckActivity"
             android:windowSoftInputMode="stateHidden" />
-<<<<<<< HEAD
         <activity
             android:name=".RecuentoActivity"
             android:screenOrientation="portrait"/>
-=======
-        <activity android:name=".RecuentoActivity" />
-        <activity android:name=".videoReglas"></activity>
->>>>>>> yeray
+        <activity
+            android:name=".VideoReglasActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

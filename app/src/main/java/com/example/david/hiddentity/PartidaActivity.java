@@ -3,19 +3,16 @@ package com.example.david.hiddentity;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 public class PartidaActivity extends Activity {
@@ -74,6 +71,9 @@ public class PartidaActivity extends Activity {
             }
 
             public void onFinish() {
+
+                MediaPlayer mp = MediaPlayer.create(PartidaActivity.this,R.raw.final_turno);
+                mp.start();
                 Intent intent = new Intent(PartidaActivity.this,PointmarkActivity.class);
                 intent.putExtra("partida",partida);
                 startActivity(intent);

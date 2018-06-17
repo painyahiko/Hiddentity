@@ -6,11 +6,7 @@ import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 
 public class PointmarkActivity extends AppCompatActivity {
 
@@ -133,6 +128,7 @@ public class PointmarkActivity extends AppCompatActivity {
                                     partida.personajes.add(partida.personajesRojos.get(i));
                                     partida.personajesRojos.remove(i);
                                     partida.redPoints--;
+                                    startGame.setText("Siguiente turno: " + partida.jugadoresAzules.get(0));
                                     rojoInfo.setText(partida.redPoints + "");
                                     datos = new ArrayAdapter<>(PointmarkActivity.this, android.R.layout.simple_list_item_1, partida.personajesRojos);
                                     listView.setAdapter(datos);
@@ -154,6 +150,7 @@ public class PointmarkActivity extends AppCompatActivity {
                                     partida.personajes.add(partida.personajesAzules.get(i));
                                     partida.personajesAzules.remove(i);
                                     partida.bluePoints--;
+                                    startGame.setText("Siguiente turno: " + partida.jugadoresRojos.get(0));
                                     azulInfo.setText(partida.bluePoints + "");
                                     datos = new ArrayAdapter<>(PointmarkActivity.this, android.R.layout.simple_list_item_1, partida.personajesAzules);
                                     listView.setAdapter(datos);

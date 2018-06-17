@@ -6,4 +6,49 @@
     android:layout_height="match_parent"
     tools:context="com.example.david.hiddentity.ReglasActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/video1"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="casual"
+            android:text="Como Crear un Mazo personalizado"
+            android:textAllCaps="true"
+            android:textColor="@android:color/holo_red_light"
+            android:textStyle="bold"
+            />
+
+        <Button
+            android:id="@+id/video2"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="casual"
+            android:text="Como Configurar los parametros de la partida"
+            android:textAllCaps="true"
+            android:textColor="@android:color/holo_red_light"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/video3"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="casual"
+            android:text="Como Jugar"
+            android:textAllCaps="true"
+            android:textColor="@android:color/holo_red_light"
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

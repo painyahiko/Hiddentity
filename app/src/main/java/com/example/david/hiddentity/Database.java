@@ -1,6 +1,5 @@
 package com.example.david.hiddentity;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -96,7 +95,7 @@ public class Database {
             db.execSQL("INSERT INTO personajes VALUES (64,'J. K. Rowling',1);");
             db.execSQL("INSERT INTO personajes VALUES (65,'Neil Patrick Harris',1);");
             db.execSQL("INSERT INTO personajes VALUES (66,'LeBron James',1);");
-            db.execSQL("INSERT INTO personajes VALUES (67,'Michel Jordan',1);");
+            db.execSQL("INSERT INTO personajes VALUES (67,'Michael Jordan',1);");
             db.execSQL("INSERT INTO personajes VALUES (68,'Kobe Bryant',1);");
             db.execSQL("INSERT INTO personajes VALUES (69,'Larry Bird',1);");
             db.execSQL("INSERT INTO personajes VALUES (70,'Jon Bon Jobi',1);");
