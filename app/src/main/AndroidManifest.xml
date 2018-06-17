@@ -43,9 +43,14 @@
         <activity
             android:name=".CreateDeckActivity"
             android:windowSoftInputMode="stateHidden" />
+<<<<<<< HEAD
         <activity
             android:name=".RecuentoActivity"
             android:screenOrientation="portrait"/>
+=======
+        <activity android:name=".RecuentoActivity" />
+        <activity android:name=".videoReglas"></activity>
+>>>>>>> yeray
     </application>
 
 </manifest>
