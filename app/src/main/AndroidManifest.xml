@@ -32,7 +32,8 @@
         <activity
             android:name=".CreateDeckActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".RecuentoActivity"></activity>
+        <activity android:name=".RecuentoActivity" />
+        <activity android:name=".videoReglas"></activity>
     </application>
 
 </manifest>
