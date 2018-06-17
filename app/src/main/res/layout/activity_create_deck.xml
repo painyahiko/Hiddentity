@@ -66,6 +66,8 @@
                 <Button
                     android:id="@+id/addCharacter"
                     android:text="añadir"
+                    android:fontFamily="casual"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -81,11 +83,13 @@
                     android:text="Personajes añadidos:"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
+                    android:fontFamily="casual"
                     android:textSize="15sp"/>
                 <TextView
                     android:id="@+id/numeroPersonajes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="casual"
                     android:textSize="15sp"
                     android:text="8"/>
             </LinearLayout>
@@ -94,6 +98,7 @@
                 android:id="@+id/listviewPersonajes"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:fontFamily="casual"
                 android:scrollbars="vertical" />
         </LinearLayout>
 
@@ -101,6 +106,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/ConstraintDeck"
         android:background="@color/greenButton"
         android:id="@+id/terminarMazo"
+        android:fontFamily="casual"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 

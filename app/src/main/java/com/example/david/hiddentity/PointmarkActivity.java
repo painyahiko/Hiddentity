@@ -132,11 +132,31 @@ public class PointmarkActivity extends AppCompatActivity {
                                     rojoInfo.setText(partida.redPoints + "");
                                     datos = new ArrayAdapter<>(PointmarkActivity.this, android.R.layout.simple_list_item_1, partida.personajesRojos);
                                     listView.setAdapter(datos);
+                                    decorView.setSystemUiVisibility(
+                                            View.SYSTEM_UI_FLAG_IMMERSIVE
+                                                    // Set the content to appear under the system bars so that the
+                                                    // content doesn't resize when the system bars hide and show.
+                                                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                                    // Hide the nav bar and status bar
+                                                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                                    | View.SYSTEM_UI_FLAG_FULLSCREEN);
                                 }
                             })
                             .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     // cerramos alert
+                                    decorView.setSystemUiVisibility(
+                                            View.SYSTEM_UI_FLAG_IMMERSIVE
+                                                    // Set the content to appear under the system bars so that the
+                                                    // content doesn't resize when the system bars hide and show.
+                                                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                                    // Hide the nav bar and status bar
+                                                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                                    | View.SYSTEM_UI_FLAG_FULLSCREEN);
                                 }
                             })
                             .setIcon(android.R.drawable.ic_dialog_alert)

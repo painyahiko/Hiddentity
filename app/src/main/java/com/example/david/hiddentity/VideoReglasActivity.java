@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.VideoView;
 
@@ -51,7 +52,9 @@ public class VideoReglasActivity extends AppCompatActivity {
         }
        // Uri path = Uri.parse(String.valueOf(R.raw.creacion_mazos));
         mp.setVideoURI(video);
-
+        MediaController mediaController= new MediaController(this);
+        mediaController.setMediaPlayer(mp);
+        mp.setMediaController(mediaController);
         mp.start();
 
 

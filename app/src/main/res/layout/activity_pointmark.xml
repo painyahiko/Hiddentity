@@ -52,6 +52,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="casual"
+                android:textStyle="bold"
                 android:textSize="20dp"
                 android:text="Resumen"
                 android:textAlignment="center" />
@@ -65,6 +67,7 @@
                 android:id="@+id/listview"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:fontFamily="casual"
                 android:scrollbars="vertical" />
 
         </LinearLayout>
@@ -81,12 +84,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="casual"
+            android:textStyle="bold"
             android:background="@color/greenButton"
             android:text="Siguiente equipo"/>
         <Button
             android:id="@+id/salir"
             android:layout_width="match_parent"
             android:layout_weight="3"
+            android:fontFamily="casual"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:background="@color/salir"
             android:text="Salir"/>
